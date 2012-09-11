@@ -15,7 +15,8 @@ thin start -R config.ru
 This is a Sinatra application that can be deployed in Passenger or run with thin.  Configuration is stored in config.ru.
 
 ###TODO
-Things on the someday list:
+#####Things on the someday list:
+
 1. Better (some) error handling
 2. Display/manage links
 3. Display/manage indexes
