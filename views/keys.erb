@@ -1,0 +1,21 @@
+<div class="row-fluid">
+	<div class="span10 offset1">
+		<div class="pagination">
+			<ul>
+				<li><a href="/server/<%= @server %>/bucket/<%= @bucket %>/key/add">Add Key</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span10 offset1">
+		<ul>
+			<% @keys.each do |key| %>
+			<li><a href="/server/<%= @server %>/bucket/<%= @bucket %>/key/<%= key %>"><%= key %></a></li>
+			<% end %>
+			<% if @keys.length == 0 %>
+			<li><strong>No Keys</strong></li>
+			<% end %>
+		</ul>
+	</div>
+</div>

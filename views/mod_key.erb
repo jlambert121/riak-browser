@@ -1,0 +1,53 @@
+<div class="row-fluid">
+	<form method="post" class="well span10 offset1 form-horizontal" id="add_key">
+		<fieldset>
+    	<legend><%= @mode %> Key</legend>
+			<div class="control-group">
+      	<label class="control-label" for="new_key">Key</label>
+				<div class="controls">
+					<input class="input-xxlarge" type="text" value="<%= @uuid_key %>" id="new_key" name="new_key" <%= @mode == 'Edit' ? 'disabled' : '' %>>
+					<% if @mode == 'Copy' %>
+					<p class="muted">(New random key generated)</p>
+					<% end %>
+				</div>
+			</div>
+			<div class="control-group">
+      	<label class="control-label" for="json_data">Data</label>
+				<div class="controls">
+					<% @json_data ? json_data = @json_data : '' %>
+					<textarea class="span10" rows="20" id='json_data' name="json_data"><%= json_data %></textarea><br/>
+				</div>
+			</div>
+			<div class="control-group">
+				<label class="control-label" for="content_type">Type</label>
+				<div class="controls">
+					<select id="content_type" name="content_type" size="1">
+						<option>application/json</option>
+						<option>text/plain</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-actions">
+      	<button type="button" class="btn" onclick="validateJson()">Submit</button>
+			</div>
+		</fieldset>
+	</form>
+</div>
+
+<script src="/json2.min.js" type="text/javascript"></script>
+
+<script>
+function validateJson(){
+
+	try
+	{
+	   var json = JSON.parse(document.getElementById('json_data').value);
+		 document.forms['add_key'].submit();
+	}
+	catch(e)
+	{
+	   alert('Invalid JSON');
+	}
+};
+
+</script>

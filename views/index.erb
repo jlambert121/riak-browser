@@ -1,0 +1,30 @@
+<div class="row-fluid">
+	<form class="well span10 offset1 form-horizontal">
+		<fieldset>
+    	<legend>Riak Server</legend>
+    	<div class="control-group">
+      	<label class="control-label" for="server">Riak Server</label>
+      	<div class="controls">
+					<input class="input-xlarge" type="text" id="server" name="server">
+				</div>
+			</div>
+    	<div class="control-group">
+      	<label class="control-label" for="port">HTTP Port</label>
+      	<div class="controls">
+					<input class="input-xlarge" type="text" id="port" name="port" value="8089">
+          <p class="muted">Default is 8089 for standrad install, 8091 for dev install</p>
+				</div>
+			</div>
+			<div class="form-actions">
+				<button class="btn" type="button" onclick="genUrl();">Submit</button>
+			</div>
+		</fieldset>
+	</form>
+</div>
+
+<script type="text/javascript">
+  function genUrl() {
+    link = "/server/" + document.getElementById('server').value + "_" + document.getElementById('port').value;
+    location.href = link;
+  }
+</script>

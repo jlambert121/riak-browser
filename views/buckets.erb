@@ -1,0 +1,18 @@
+<div class="row-fluid">
+	<div class="span10 offset1">
+		<div class="pagination">
+			<ul>
+				<li><a href="/server/<%= @server %>/bucket/add">Add Bucket</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span10 offset1">
+		<ul>
+			<% @buckets.each do |bucket| %>
+			<li><a href="/server/<%= @server %>/bucket/<%= bucket %>"><%= bucket %></a></li>
+			<% end %>
+		</ul>
+	</div>
+</div>
