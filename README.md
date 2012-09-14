@@ -4,9 +4,9 @@ A simple data browser and editor for Riak databases.  riak-browser can be used t
 
 ### Installation/Quick start
 ```
-gem install riak-client multi_json oj thin
 git clone https://github.com/jlambert121/riak-browser.git
 cd riak-browser
+bundle install
 thin start -R config.ru
 ```
 
