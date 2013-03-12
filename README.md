@@ -1,6 +1,6 @@
 #What?
 
-A simple data browser and editor for Riak databases.  riak-browser can be used to add, delete, copy, and edit JSON documents and is intended to be used in development environments.  It is not recommended for use on production databases since riak-browser relies on listing buckets and keys.
+A simple data browser and editor for Riak databases for viewing and editing JSON documents..  riak-browser can be used to add, delete, copy, and edit JSON documents and is intended to be used in development environments.  It is not recommended for use on production databases since riak-browser relies on listing buckets and keys.
 
 ### Installation/Quick start
 ```
@@ -31,6 +31,11 @@ This is a Sinatra application that can be deployed in Passenger or run with thin
 3. Send a pull request -- please include a short description of your fix or enhancement and one fix or enhancement per pull request.
 4. Enjoy your awesomeness.
 
+### TODO
+View/edit indexes
+Support binary data
+View/edit bucket properties
+
 ###Contact
 
-Justin Lambert / jlambert@bufferfish.com
+Justin Lambert / jlambert@letsevenup.com
