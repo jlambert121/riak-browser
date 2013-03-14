@@ -6,7 +6,7 @@ A simple data browser and editor for Riak databases for viewing and editing JSON
 ```
 git clone https://github.com/jlambert121/riak-browser.git
 cd riak-browser
-bundle install
+bundle install OR bundle install --path vendor
 thin start -R config.ru
 ```
 
