@@ -139,7 +139,7 @@ class RiakBrowser < Sinatra::Base
       redirect "/server/#{@server}/bucket/#{@bucket}"
     end
     @data = client[@bucket][@key].data.to_json
-    puts @data.class
+    @indexes = client[@bucket][@key].indexes
     erb :view_key
   end
 

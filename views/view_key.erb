@@ -11,6 +11,20 @@
 </div>
 <div class="row-fluid">
 	<div class="span10 offset1">
+    <strong>Indexes:</strong>
+		<pre id="indexes">
+<% if @indexes && @indexes.length > 0 %>
+<%  @indexes.each do |k,v| %>
+<%=    "#{k}: #{v.to_a.join(', ')}<br/>"%>
+<%  end %>
+<% else %>
+None
+<% end %>
+</pre>
+	</div>
+</div>
+<div class="row-fluid">
+	<div class="span10 offset1">
 		<pre id="key_data">
 		</pre>
 	</div>
