@@ -94,7 +94,7 @@ class RiakBrowser < Sinatra::Base
     @uuid_key = @key
     client = connect @server
     @json_data = client[@bucket][@key].data
-    @json_data.gsub!(',', ",\n")
+#    @json_data.gsub!(',', ",\n")
 
     erb :mod_key
   end
@@ -108,7 +108,7 @@ class RiakBrowser < Sinatra::Base
 
     client = connect @server
     to_store = client[@bucket].get_or_new(@key)
-    to_store.data = data
+    to_store.raw_data = data
     to_store.content_type = content_type
     to_store.store
 
