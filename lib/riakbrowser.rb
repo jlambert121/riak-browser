@@ -22,6 +22,7 @@ class RiakBrowser < Sinatra::Base
   before do
     # Ruby 1.8 doesn't maintain hash order, array of hashes
     @breadcrumbs = [{'name' => 'Home', 'link' => '/'}]
+    Riak.disable_list_keys_warnings = true
   end
 
   get '/server/:server/bucket/:bucket/key/add' do
