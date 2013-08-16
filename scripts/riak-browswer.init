@@ -1,0 +1,69 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          riak-browswer
+# Required-Start:    $local_fs $remote_fs
+# Required-Stop:     $local_fs $remote_fs
+# Default-Start:     3 4 5
+# Default-Stop:      S 0 1 2 6
+# Short-Description: riak-browswer initscript
+# Description:       riak-browswer
+### END INIT INFO
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+INSTALL_DIR="/opt/riak-browser"
+PID_FILE="${INSTALL_DIR}/tmp/pids/thin.pid"
+LOG_FILE="/var/log/riak-browser.log"
+
+function thin_status {
+
+  status -p "${PID_FILE}" riak-browser
+  return $?
+
+}
+
+function restart {
+
+  cd ${INSTALL_DIR}
+  echo "Starting riak-browswer"
+  daemon "/usr/bin/bundle exec bin/thin -R config.ru -p ${PID_FILE} -l ${LOG_FILE} -d restart"
+  return $?
+
+}
+
+function start {
+
+  cd ${INSTALL_DIR}
+  echo "Starting riak-browswer"
+  daemon "/usr/bin/bundle exec bin/thin -R config.ru -p ${PID_FILE} -l ${LOG_FILE} -d start"
+  return $?
+}
+
+function stop {
+
+  cd ${INSTALL_DIR}
+  echo "Starting riak-browswer"
+  daemon "/usr/bin/bundle exec bin/thin -p ${PID_FILE} stop"
+  return $?
+}
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  restart)
+    restart
+    ;;
+  status)
+    thin_status
+    ;;
+  *)
+    echo $"Usage: $0 {start|stop|restart|status}"
+    exit 3
+esac
+
+exit $?
