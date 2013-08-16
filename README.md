@@ -10,6 +10,15 @@ bundle install OR bundle install --path vendor
 thin start -R config.ru
 ```
 
+To build an RPM package using fpm and a nasty build script:
+```
+git clone https://github.com/jlambert121/riak-browser.git
+cd riak-browser/scripts
+./build.sh
+rpm -i /tmp/riak-browser-<version>-1.noarch.rpm
+/etc/init.d/riak-browswer start
+```
+
 ###Config
 
 This is a Sinatra application that can be deployed in Passenger or run with thin.  Configuration is stored in config.ru.
@@ -19,10 +28,12 @@ This is a Sinatra application that can be deployed in Passenger or run with thin
 
 1. Better (some) error handling
 2. Display/manage links
-3. Display/manage indexes
+3. Display (done)/edit indexes
 4. Support other document types
-5. Index queries
-6. Probably lots of bug fixes
+5. Support binary data
+6. Index queries
+7. View/Edit bucket properties
+7. Probably lots of bug fixes
 
 ### How to Contribute
 
@@ -30,11 +41,6 @@ This is a Sinatra application that can be deployed in Passenger or run with thin
 2. Make your bug fix or enhancement.
 3. Send a pull request -- please include a short description of your fix or enhancement and one fix or enhancement per pull request.
 4. Enjoy your awesomeness.
-
-### TODO
-View/edit indexes
-Support binary data
-View/edit bucket properties
 
 ###Contact
 
