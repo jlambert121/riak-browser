@@ -3,6 +3,10 @@
 A simple data browser and editor for Riak databases for viewing and editing JSON documents..  riak-browser can be used to add, delete, copy, and edit JSON documents and is intended to be used in development environments.  It is not recommended for use on production databases since riak-browser relies on listing buckets and keys.
 
 ### Installation/Quick start
+Using puppet:
+There is a [puppet module](https://github.com/evenup/evenup-riak_browser) which will make installation easier, but you
+still need to build the RPM of the porject using the build script defined below.
+
 ```
 git clone https://github.com/jlambert121/riak-browser.git
 cd riak-browser
