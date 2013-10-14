@@ -1,21 +1,36 @@
+<script type="text/javascript">
+  function filterKeys(baseUrl) {
+    ss = document.getElementById('searchString').value
+    if (!ss || 0 === ss.length) {
+      location.href = baseUrl;
+    }
+    else {
+      location.href = baseUrl + "/" + ss;
+    }
+  }
+</script>
+
 <div class="row-fluid">
-	<div class="span10 offset1">
-		<div class="pagination">
-			<ul>
-				<li><a href="/server/<%= @server %>/bucket/<%= @bucket %>/key/add">Add Key</a></li>
-			</ul>
-		</div>
-	</div>
+  <div class="span10 offset1">
+    <div class="pagination">
+      <ul>
+    	<li><a href="/server/<%= @server %>/bucket/<%= @bucket %>/key/add">Add Key</a></li>
+        <li><a href="javascript:filterKeys('/server/<%= @server %>/bucket/<%= @bucket %>');">Filter:</a></li>
+        <li><input type="text" id="searchString" value="<%= @searchString %>"/></li>
+      </ul>
+    </div>
+  </div>
 </div>
 <div class="row-fluid">
-	<div class="span10 offset1">
-		<ul>
-			<% @keys.each do |key| %>
-			<li><a href="/server/<%= @server %>/bucket/<%= @bucket %>/key/<%= key %>"><%= key %></a></li>
-			<% end %>
-			<% if @keys.length == 0 %>
-			<li><strong>No Keys</strong></li>
-			<% end %>
-		</ul>
-	</div>
+  <div class="span10 offset1">
+    <ul>
+      <% @keys.each do |key| %>
+        <li><a href="/server/<%= @server %>/bucket/<%= @bucket %>/key/<%= key %>"><%= key %></a></li>
+      <% end %>
+      <% if @keys.length == 0 %>
+        <li><strong>No Keys</strong></li>
+      <% end %>
+    </ul>
+  </div>
 </div>
+
