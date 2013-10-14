@@ -18,6 +18,20 @@ class RiakBrowser < Sinatra::Base
     server_name, port = server.split('_')
     Riak::Client.new(:nodes => [{:host => server_name, :http_port => port}])
   end
+  
+  def filter_keys client,bucket,searchString
+    results = Riak::MapReduce.new(client).
+                    add("#{bucket}").
+                    map("function(riakObject)     {var val = riakObject.values[0].data.match(/#{searchString}/gi);
+    if (val) {
+        return [[riakObject.key, val.length]]; 
+    }
+    else {
+       return []
+    }
+    }", :keep => true).run
+    results.map! {|result| result[0]}
+  end
 
   before do
     # Ruby 1.8 doesn't maintain hash order, array of hashes
@@ -164,6 +178,20 @@ class RiakBrowser < Sinatra::Base
     @breadcrumbs << {'name' => "Bucket: #{@bucket}", 'link' => "/server/#{@server}/bucket/#{@bucket}"}
     client = connect @server
     raw_keys = client[@bucket].keys
+    @keys = raw_keys.sort
+    erb :keys
+  end
+
+  get '/server/:server/bucket/:bucket/:searchString' do
+    @server = params[:server]
+    @bucket = params[:bucket]
+    @searchString = params[:searchString]
+    @breadcrumbs << {'name' => "Server: #{@server}", 'link' => "/server/#{@server}"}
+    @breadcrumbs << {'name' => "Bucket: #{@bucket}", 'link' => "/server/#{@server}/bucket/#{@bucket}"}
+    @breadcrumbs << {'name' => "Filter: #{@searchString}", 'link' => "/server/#{@server}/bucket/#{@bucket}/#{@searchString}"}
+    client = connect @server
+    raw_keys = client[@bucket].keys
+    raw_keys = filter_keys client,@bucket,@searchString
     @keys = raw_keys.sort
     erb :keys
   end
