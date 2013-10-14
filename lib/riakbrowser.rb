@@ -22,14 +22,13 @@ class RiakBrowser < Sinatra::Base
   def filter_keys client,bucket,searchString
     results = Riak::MapReduce.new(client).
                     add("#{bucket}").
-                    map("function(riakObject)     {var val = riakObject.values[0].data.match(/#{searchString}/gi);
+                    map("function(riakObject) {
+    var val = riakObject.values[0].data.match(/#{searchString}/gi);
     if (val) {
-        return [[riakObject.key, val.length]]; 
+      return [[riakObject.key, val.length]]; 
     }
     else {
-       return []
-    }
-    }", :keep => true).run
+      return []}}", :keep => true).run
     results.map! {|result| result[0]}
   end
 
